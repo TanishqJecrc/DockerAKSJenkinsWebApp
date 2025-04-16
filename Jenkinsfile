@@ -37,7 +37,7 @@ pipeline {
         stage('Build') {
              steps {
                  dir('WebApplication1/WebApplication1') {
-                     bat 'dotnet publish WebApplication.csproj -c Release -o out'
+                     bat 'dotnet publish WebApplication1.csproj -c Release -o out'
                     
                  }
                  
