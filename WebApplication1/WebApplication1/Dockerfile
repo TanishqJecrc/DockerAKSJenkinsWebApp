@@ -16,7 +16,7 @@ COPY ["/WebApplication1/WebApplication1.csproj", "."]
 RUN dotnet restore "./WebApplication1.csproj"
 COPY . .
 WORKDIR "/src/"
-RUN dotnet build "./WebApplication1.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./WebApplication1/WebApplication1.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
