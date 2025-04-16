@@ -67,6 +67,14 @@ pipeline {
             }
         }
 
+        stage('AKS Startup') {
+            steps {
+                withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
+                bat "az aks get-credentials --resource-group rg-jenkins-docker-aks --name aks-cluster-docker-jenkins"
+                bat "kubectl get service dotnet-api-service"}
+            }
+        }
+
     }
 
     post {
