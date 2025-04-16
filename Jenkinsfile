@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/TanishqJecrc/WebApplicationDockerAKSJenkins.git'
+                git branch: 'main', url: 'https://github.com/TanishqJecrc/DockerAKSJenkinsWebApp.git'
             }
         }
          stage('Terraform Init') {
@@ -36,7 +36,7 @@ pipeline {
 
         stage('Build') {
              steps {
-                 dir('WebApplication') {
+                 dir('WebApplication1/WebApplication1') {
                      bat 'dotnet publish WebApplication.csproj -c Release -o out'
                     
                  }
@@ -45,7 +45,7 @@ pipeline {
          }
          stage('Build Docker Image') {
             steps {
-                bat "docker build -t %ACR_LOGIN_SERVER%/webapplication:latest -f WebApplication/Dockerfile WebApplication"
+                bat "docker build -t %ACR_LOGIN_SERVER%/webapplication:latest -f WebApplication1/WebApplication1/Dockerfile WebApplication1"
             }
         }
          stage('Login to ACR') {
