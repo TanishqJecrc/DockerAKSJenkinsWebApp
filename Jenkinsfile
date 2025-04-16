@@ -63,7 +63,7 @@ pipeline {
 
         stage('Deploy to AKS') {
             steps {
-                bat "kubectl apply -f WebApplication/deployment.yaml"
+                bat "kubectl apply -f terraform/deployment.yaml"
             }
         }
 
