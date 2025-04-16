@@ -15,21 +15,13 @@ pipeline {
             }
         }
 
-        stage('Build') {
-             steps {
-                 dir('WebApplication1/WebApplication1') {
-                     bat 'dotnet publish WebApplication1.csproj -c Release -o out'
-                    
-                 }
-                 
-             }
-         }
+        
          stage('Build Docker Image') {
             steps {
                 bat "docker build -t %ACR_LOGIN_SERVER%/webapplication:latest -f WebApplication1/WebApplication1/Dockerfile WebApplication1"
             }
         }
-        
+
          stage('Terraform Init') {
                 steps {
                      withCredentials([azureServicePrincipal(credentialsId: AZURE_CREDENTIALS_ID)]) {
